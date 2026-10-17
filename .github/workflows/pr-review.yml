@@ -67,7 +67,7 @@ jobs:
   # ──────────────────────────────────────────────────────────
   review-pr-auto:
     name: Review PR (auto)
-    if: ${{ github.repository_owner == 'enescingoz' && (github.event_name == 'pull_request_target') }}
+    if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     concurrency:
@@ -749,7 +749,7 @@ jobs:
   # ──────────────────────────────────────────────────────────
   review-pr-manual:
     name: Review PR (manual/scheduled)
-    if: ${{ github.repository_owner == 'enescingoz' && ((github.event_name == 'workflow_dispatch' && github.actor == github.repository_owner) || github.event_name == 'schedule') }}
+    if: (github.event_name == 'workflow_dispatch' && github.actor == github.repository_owner) || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
